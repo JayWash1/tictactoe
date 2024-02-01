@@ -42,39 +42,20 @@ clear_screen()
 game_on = True
 
 while game_on:
-    #Display game board
+    # Display game board
     print_board(board)
-    #Get input from player
-    choice = input("Choose position: ")
-    if choice == "1":
-        board[0][0] = "X"
-    if choice == "2":
-        board[0][1] = "X"
-    if choice == "3":
-        board[0][2] = "X"
-    if choice == "4":
-        board[1][0] = "X"
-    if choice == "5":
-        board[1][1] = "X"
-    if choice == "6":
-        board[1][2] = "X"
-    if choice == "7":
-        board[2][0] = "X"
-    if choice == "8":
-        board[2][1] = "X"
-    if choice == "9":
-        board[2][2] = "X"
-    else:
+    
+    # Get input from player
+    user_choice = input("Choose position 1 - 9 or q to quit: ")
+    
+    if user_choice in ["1", "2", "3", "4", "5", "6", "7", "8", "9"]:
+        # Convert user_choice to an integer and update the board
+        position = int(user_choice) - 1
+        row = position // 3
+        col = position % 3
+        board[row][col] = "X"
+    elif user_choice.lower() == "q":
+        print("Thanks for playing!")
         game_on = False
-
-#board[0][0] = "X"
-
-print_board(board)
-
-#player_1 is x and player_2 is o
-
-#check for win or tie
-
-#switch the player
-
-#check for win or tie
+    else:
+        print("Invalid input")
