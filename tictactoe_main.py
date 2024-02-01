@@ -41,9 +41,17 @@ clear_screen()
 #Initialize game
 game_on = True
 
+#Move counter to limit moves to 9
+move_count = 0
+
 while game_on:
     # Display game board
     print_board(board)
+
+    #Check if it's a draw
+    if move_count == 9:
+        print("It's a draw!")
+        break
     
     # Get input from player
     user_choice = input("Choose position 1 - 9 or q to quit: ")
@@ -54,6 +62,7 @@ while game_on:
         row = position // 3
         col = position % 3
         board[row][col] = "X"
+        move_count += 1
     elif user_choice.lower() == "q":
         print("Thanks for playing!")
         game_on = False
