@@ -18,7 +18,7 @@ Welcome to the classic two-player game of Tic-Tac-Toe! This game is played on a 
 2. Navigate to the directory where the game files are located.
 3. Run the main Python file using the following command:
    ```bash
-   python main.py
+   tictactoe_main.py
 
     Follow the on-screen instructions to play the game.
 
@@ -32,7 +32,7 @@ Gameplay
 
 File Structure
 
-    main.py: The main Python file containing the game logic and user interface.
+    tictactoe_main.py: The main Python file containing the game logic and user interface.
     helpers.py: A helper file with functions for printing the game board and clearing the screen.
 
 Contributing
