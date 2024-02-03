@@ -44,27 +44,44 @@ game_on = True
 #Move counter to limit moves to 9
 move_count = 0
 
-while game_on:
-    # Display game board
-    print_board(board)
-
-    #Check if it's a draw
-    if move_count == 9:
-        print("It's a draw!")
-        break
-    
-    # Get input from player
-    user_choice = input("Choose position 1 - 9 or q to quit: ")
-    
-    if user_choice in ["1", "2", "3", "4", "5", "6", "7", "8", "9"]:
-        # Convert user_choice to an integer and update the board
+#Player move placement
+def player_move(player_choice):
+    # Convert user_choice to an integer and update the board
         position = int(user_choice) - 1
         row = position // 3
         col = position % 3
         board[row][col] = "X"
-        move_count += 1
-    elif user_choice.lower() == "q":
-        print("Thanks for playing!")
-        game_on = False
-    else:
-        print("Invalid input")
+        
+
+while game_on:
+    # Display game board
+    print_board(board)
+
+    # Check for a draw based on filled cells, not just move count
+    if all(cell != " " for row in board for cell in row):
+        print("It's a draw!")
+        break
+
+    # Get input from player
+    while True:  # Keep prompting until a valid move is made
+        user_choice = input("Choose position 1 - 9 or q to quit: ")
+
+        if user_choice.lower() == "q":
+            print("Thanks for playing!")
+            game_on = False
+            break  # Exit the input loop
+
+        elif user_choice in ["1", "2", "3", "4", "5", "6", "7", "8", "9"]:
+            position = int(user_choice) - 1
+            row = position // 3
+            col = position % 3
+
+            if board[row][col] == " ":  # Check if the cell is empty
+                player_move(user_choice)  # Valid move, proceed
+                move_count += 1
+                break  # Exit the input loop
+            else:
+                print("Invalid move. Cell already occupied.")
+
+        else:
+            print("Invalid input")
